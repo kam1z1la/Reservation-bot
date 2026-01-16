@@ -9,26 +9,29 @@ const API_URL = '/api/resd';
     const tg = window.Telegram?.WebApp;
 
     if (!tg || !tg.initDataUnsafe?.user) {
-       throw new Error('ID клієнта відсутній');
+        throw new Error('Запуск вне Telegram: данные отсутствуют');
     }
 
     const user = tg.initDataUnsafe.user;
+    const chat = tg.initDataUnsafe.chat;
+
+    const effectiveId = chat?.id || user.id;
 
     const reservationData: Reservation = {
-      clientId: user.id,
-      firstName: '',
-      lastName: '',
-      phoneNumber: '', 
-      seatId: 0,
-      date: '',
-      time: '',
-      numberOfPeople: 1,
-      messageId: 0,
-      reminder: false
+        clientId: effectiveId, 
+        firstName: '',
+        lastName: '',
+        phoneNumber: '',
+        seatId: 0,
+        date: '',
+        time: '',
+        numberOfPeople: 1,
+        messageId: 0,
+        reminder: false
     };
 
     return Promise.resolve(reservationData);
-  },
+},
 
     async create(reservation: Reservation) {
       const response = await axios.post(`${API_URL}/create`, reservation);
