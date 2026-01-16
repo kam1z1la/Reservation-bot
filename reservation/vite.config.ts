@@ -6,7 +6,6 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: "/Reservation-bot/",
   plugins: [
     vue(),
     vueDevTools(),
@@ -16,4 +15,7 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+  server: {
+    allowedHosts: ['bev-unmanifestative-rosie.ngrok-free.dev']
+  }
 })

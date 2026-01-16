@@ -4,12 +4,16 @@ import type { Reservation } from '../types/Reservation';
 const API_URL = '/api/resd';
 
   export default {
-  async getInitialDraft(): Promise<Reservation> {
+async getInitialDraft(): Promise<Reservation> {
     // @ts-ignore
     const tg = window.Telegram?.WebApp;
 
-    if (!tg || !tg.initDataUnsafe?.user) {
-        throw new Error('Запуск вне Telegram: данные отсутствуют');
+    if (!tg) {
+        throw new Error('WebApp is undefined. Script not loaded?');
+    }
+
+    if (!tg.initDataUnsafe?.user) {
+        throw new Error('No User Data. Opened via direct link?');
     }
 
     const user = tg.initDataUnsafe.user;
@@ -19,8 +23,8 @@ const API_URL = '/api/resd';
 
     const reservationData: Reservation = {
         clientId: effectiveId, 
-        firstName: '',
-        lastName: '',
+        firstName: user.first_name || '',
+        lastName: user.last_name || '',
         phoneNumber: '',
         seatId: 0,
         date: '',

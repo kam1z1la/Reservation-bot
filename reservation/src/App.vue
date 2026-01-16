@@ -119,6 +119,7 @@ async function submitReservation() {
 
 <template>
   <div class="container">
+
     <SubmissionError 
       v-if="isSubmissionError" 
       @close="isSubmissionError = false" 
@@ -131,7 +132,7 @@ async function submitReservation() {
       <p class="loading-text">Завантаження даних...</p>
     </div>
 
-    <ErrorState 
+     <ErrorState 
       v-else-if="isError"
       title="Помилка авторизації"
       @retry="initAppData"
