@@ -68,13 +68,13 @@ onMounted(() => {
 });
 
 const closeApp = () => {
-  //   // @ts-ignore
-  // if (window.Telegram?.WebApp) {
-  //   // @ts-ignore
-  //   window.Telegram.WebApp.close();
-  // } else {
-  //   window.close();
-  // }
+    // @ts-ignore
+  if (window.Telegram?.WebApp) {
+    // @ts-ignore
+    window.Telegram.WebApp.close();
+  } else {
+    window.close();
+  }
 };
 
 async function submitReservation() {
