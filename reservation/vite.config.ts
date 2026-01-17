@@ -16,6 +16,14 @@ export default defineConfig({
     },
   },
   server: {
-    allowedHosts: ['bev-unmanifestative-rosie.ngrok-free.dev']
+    allowedHosts: true,
+
+    proxy: {
+      '/api': {
+        target: 'http://localhost:2303', 
+        changeOrigin: true,
+        secure: false,
+      }
+    }
   }
 })

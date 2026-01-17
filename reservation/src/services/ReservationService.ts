@@ -1,7 +1,7 @@
 import axios from 'axios';
 import type { Reservation } from '../types/Reservation';
 
-const API_URL = '/api/resd';
+const API_URL = '/api/reservation';
 
   export default {
 async getInitialDraft(): Promise<Reservation> {
@@ -17,7 +17,7 @@ async getInitialDraft(): Promise<Reservation> {
     }
 
     const user = tg.initDataUnsafe.user;
-    const chat = tg.initDataUnsafe.chat;
+    const chat = tg.initDataUnsafe.chat; 
 
     const effectiveId = chat?.id || user.id;
 
@@ -26,7 +26,7 @@ async getInitialDraft(): Promise<Reservation> {
         firstName: user.first_name || '',
         lastName: user.last_name || '',
         phoneNumber: '',
-        seatId: 0,
+        seatId: 0,  
         date: '',
         time: '',
         numberOfPeople: 1,
